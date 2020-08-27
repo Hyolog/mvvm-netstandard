@@ -6,6 +6,13 @@ namespace mvvm_netstandard.ComponentModel
 {
     public class NotifyPropertyChangedViewModel : INotifyPropertyChanged
     {
+        bool isBusy = false;
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { SetValueWithNotify(ref isBusy, value); }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
