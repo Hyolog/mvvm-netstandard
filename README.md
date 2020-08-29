@@ -28,7 +28,7 @@ public class SearchViewModel : NotifyPropertyChangedViewModel
 ```
 
 Allocate **RelayCommand** to ICommand type property and
-binding it.
+binding it. (need to implement **Execute()** and **CanExecute()**)
 ```csharp
 public ICommand SearchCommand { get; set; }
 
@@ -40,6 +40,24 @@ public SearchViewModel()
 ```xml
 <ui:AppBarButton Label="Search" Command="{Binding SearchCommand}"/>
 ```
-
+Use **IsBusy** property before starting a time-consuming task and binding it.
+```csharp
+private void GetStocks()
+{
+    try
+    {
+        IsBusy = true;
+        //Do Something
+    }
+    finally
+    {
+        IsBusy = false;
+    }
+}
+```
+(BusyIndicator control is thrid party control)
+```xml
+<us:BusyIndicator x:Name="BusyIndicator" IsBusy="{Binding IsBusy}">
+```
 ## Authors
 DaehyeonKang
